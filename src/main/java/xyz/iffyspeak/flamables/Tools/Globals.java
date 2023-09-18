@@ -8,6 +8,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.CraftingRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import xyz.iffyspeak.flamables.Flamables;
 import xyz.iffyspeak.flamables.Interfaces.ICustomItem;
 
@@ -36,6 +38,10 @@ public class Globals {
                         MiniMessage.miniMessage().deserialize("<color:#ff00e6>Who deserves this anyways?</color>"),
                         MiniMessage.miniMessage().deserialize("<color:#ff00e6>You're a monster.</color>")
                 ));
+
+                PersistentDataContainer pdc = meta.getPersistentDataContainer();
+                pdc.set(new NamespacedKey("flammables", "is_normal_molotov"), PersistentDataType.BOOLEAN, true);
+
                 molotov.setItemMeta(meta);
 
                 return molotov;
@@ -57,7 +63,23 @@ public class Globals {
 
             @Override
             public ItemStack getItem() {
-                return null;
+                ItemStack molotov = new ItemStack(Material.SPLASH_POTION);
+                PotionMeta meta = (PotionMeta) molotov.getItemMeta();
+                meta.setColor(Color.fromRGB(255,66,28));
+                meta.displayName(MiniMessage.miniMessage().deserialize("<color:#ff0040><b>Explosive Molotov Cocktail</b></color>"));
+                meta.lore(Arrays.asList(
+                        MiniMessage.miniMessage().deserialize("<color:#ff0000><b>USE WILL DISQUALIFY ALL LIFE REFUNDS</b></color>"),
+                        Component.text(""),
+                        MiniMessage.miniMessage().deserialize("<color:#ff00e6>Oh, wow. So you've <i>really</i> had enough.</color>"),
+                        MiniMessage.miniMessage().deserialize("<color:#ff00e6>Wonder what they did to set you off.</color>")
+                ));
+
+                PersistentDataContainer pdc = meta.getPersistentDataContainer();
+                pdc.set(new NamespacedKey("flammables", "is_explosive_molotov"), PersistentDataType.BOOLEAN, true);
+
+                molotov.setItemMeta(meta);
+
+                return molotov;
             }
 
             @Override
