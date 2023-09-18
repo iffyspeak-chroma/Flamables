@@ -1,0 +1,6 @@
+name: Flamables
+version: '${project.version}'
+main: xyz.iffyspeak.flamables.Flamables
+api-version: '1.20'
+load: STARTUP
+authors: [iffyspeak]
