@@ -88,5 +88,14 @@ public class Globals {
                 return null;
             }
         }
+
+        public static Molotov initializedMolotov;
+        public static ExplosiveMolotov initializedExplosiveMolotov;
+
+        public static void initAllItems()
+        {
+            initializedMolotov = new Molotov();
+            initializedExplosiveMolotov = new ExplosiveMolotov();
+        }
     }
 }
