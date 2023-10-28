@@ -24,15 +24,15 @@ public class EventListener implements Listener {
         if (e.getPotion().getItem().getItemMeta().getPersistentDataContainer().has(new NamespacedKey("flammables", "is_normal_molotov"), PersistentDataType.BOOLEAN))
         {
             // If it's a normal molotov, code here
-            Bukkit.getLogger().severe("Normal molotov");
-            Toolkit.WorldTools.combustSetFire(10, e.getEntity().getWorld(), e.getPotion().getLocation().getBlockX(), e.getPotion().getLocation().getBlockY(), e.getPotion().getLocation().getBlockZ());
+            //Bukkit.getLogger().severe("Normal molotov");
+            Toolkit.WorldTools.combustSetFire(6, e.getEntity().getWorld(), e.getPotion().getLocation().getBlockX(), e.getPotion().getLocation().getBlockY(), e.getPotion().getLocation().getBlockZ());
         }
 
         if (e.getPotion().getItem().getItemMeta().getPersistentDataContainer().has(new NamespacedKey("flammables", "is_explosive_molotov"), PersistentDataType.BOOLEAN))
         {
             // If it's an explosive molotov, code here
-            Bukkit.getLogger().severe("Explosive molotov");
-            Toolkit.WorldTools.combustSetFire(30, e.getEntity().getWorld(), e.getPotion().getLocation().getBlockX(), e.getPotion().getLocation().getBlockY(), e.getPotion().getLocation().getBlockZ());
+            //Bukkit.getLogger().severe("Explosive molotov");
+            Toolkit.WorldTools.combustSetFire(12, e.getEntity().getWorld(), e.getPotion().getLocation().getBlockX(), e.getPotion().getLocation().getBlockY(), e.getPotion().getLocation().getBlockZ());
         }
     }
 

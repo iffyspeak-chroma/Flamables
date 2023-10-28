@@ -1,12 +1,30 @@
 package xyz.iffyspeak.flamables.Tools;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+
+import java.util.Random;
+
 public class Toolkit {
+    public static class RNG {
+        public static int RandomRange(int high, int low)
+        {
+            return (new Random().nextInt(high-low) + low);
+        }
+        public static boolean RandomBoolean() {
+            return new Random().nextBoolean();
+        }
+
+        public static float RandomFloat() {
+            return new Random().nextFloat();
+        }
+    }
 
     public static class WorldTools
     {
+
         public static int getSurfaceBlock(World search, int x, int z, int ystart)
         {
             int surface = ystart;
@@ -25,7 +43,6 @@ public class Toolkit {
 
             return surface;
         }
-
         public static void combustSetFire(int flameRadius, World world, int x, int landy, int z)
         {
             // There's a lot of precision that'll be cut out because of minecraft blocks :\
@@ -34,26 +51,27 @@ public class Toolkit {
             double pi = 3.14159265;
             double i, angle, x1, y1;
 
-            for (i = 0; i < 360; i += 0.1)
-            {
-                angle = i;
-                x1 = flameRadius * Math.cos(angle * pi / 180);
-                y1 = flameRadius * Math.sin(angle * pi / 180);
+            for (int r = flameRadius; r >= 0; r--) {
+                for (i = 0; i < 360; i += 0.1) {
+                    angle = i;
+                    x1 = r * Math.cos(angle * pi / 180);
+                    y1 = r * Math.sin(angle * pi / 180);
 
-                Location loc = new Location(
-                        world,
-                        x + x1,
-                        getSurfaceBlock(
-                                world,
-                                (int) (x + x1),
-                                (int) (z + y1),
-                                landy),
-                        z + y1
-                        );
-
-                world.getBlockAt(loc).setType(Material.FIRE);
+                    Location loc = new Location(
+                            world,
+                            x + x1,
+                            getSurfaceBlock(
+                                    world,
+                                    (int) (x + x1),
+                                    (int) (z + y1),
+                                    landy),
+                            z + y1
+                    );
+                    world.getBlockAt(loc).setType(Material.FIRE);
+                }
             }
         }
-    }
+        }
 
 }
+
