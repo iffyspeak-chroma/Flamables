@@ -36,21 +36,4 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onAsyncChat(AsyncChatEvent e)
-    {
-        for (int i = 1; i <= 100; i++)
-        {
-            Bukkit.getServer().getLogger().severe("A DEBUG COMMAND IS BEING RAN. PLEASE REMOVE IT BEFORE PRODUCTION");
-        }
-
-        String message = MiniMessage.miniMessage().serialize(e.message());
-
-        if (message.contains("gimmestuff"))
-        {
-            e.getPlayer().getInventory().addItem(Globals.Item.initializedMolotov.getItem());
-            e.getPlayer().getInventory().addItem(Globals.Item.initializedExplosiveMolotov.getItem());
-        }
-    }
-
 }
